@@ -10,7 +10,8 @@
 
 	<properties>
 		<spring.version>3.0.5.RELEASE</spring.version>
-	</properties>
+        <jackson.version>2.3.0</jackson.version>
+    </properties>
 
 	<dependencies>
 
@@ -33,9 +34,74 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+        </dependency>
 
-	<build>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+        </dependency>
+
+
+
+    </dependencies>
+    <build>
+
+        <finalName>wmvc</finalName>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+                <version>3.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <path>/wmvc</path>
+                    <port>8080</port>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-jgitflow-plugin</artifactId>
+                <version>1.0-alpha27</version>
+                <configuration>
+                    <flowInitContext>
+                        <developBranchName>dev</developBranchName>
+                        <versionTagPrefix>v</versionTagPrefix>
+                        <featureBranchPrefix>features/</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                    </flowInitContext>
+                    <noDeploy>true</noDeploy>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+<!--	<build>
 		<finalName>SpringMVC</finalName>
 		<plugins>
 			<plugin>
@@ -46,6 +112,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 </project>
