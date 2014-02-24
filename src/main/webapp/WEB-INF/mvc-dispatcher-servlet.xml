@@ -9,7 +9,10 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.mkyong.common.controller" />
+    <context:component-scan base-package="com.mael.common.controller" />
+    <context:component-scan base-package="com.mael.common.service" />
+    
+    <mvc:resources mapping="/resources/**" location="/resources/" />
     
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
