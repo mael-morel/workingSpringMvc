@@ -1,5 +1,6 @@
 package com.mkyong.common.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,15 +9,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/aaa")
 public class HelloController {
+    
+    @Autowired
+    private ServiceExemple serviceExemple;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView printWelcome(ModelMap model) {
-        ModelAndView sb = new ModelAndView("hello");
-        System.out.println("bonjour");
-        model.addAttribute("message", "Spring 3 MVC Hello World");
-		return sb;
+	@RequestMapping(value="/hello", method = RequestMethod.GET)
+        @ResponseBody
+	public String printWelcome(ModelMap model) {
+            ModelAndView sb = new ModelAndView("hello");
+            System.out.println("bonjour");
+            model.addAttribute("message", "Spring 3 MVC Hello World");
+            return serviceExemple.returnName();
 
 	}
 /*	// /welcome/welcome/welcome2
